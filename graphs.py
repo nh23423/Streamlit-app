@@ -26,7 +26,7 @@ def build(file):
     df['Month'] = df['Event Date/Time'].dt.month
 
     df = df[(df['Year'])<datetime.today().year]
-    df = df[(df['Year'])>2013]
+    df = df[(df['Year'])>2014]
 
     df_sum = df.groupby(['Year', 'Month'])['Sum of Price'].sum().reset_index()
     df_sum['Year-Month'] = df_sum['Year'].astype(str) + '-' + df_sum['Month'].astype(str)
@@ -73,7 +73,7 @@ def build(file):
                 direction = 'down',
                 buttons = buttons,
                 x= -0.2,  # Adjust the x-coordinate to position the dropdown menu horizontally
-                y= 1.2,  # Adjust the y-coordinate to position the dropdown menu vertically
+                y= 1.15,  # Adjust the y-coordinate to position the dropdown menu vertically
                 xanchor = "left",  # Anchor the x-coordinate to the center of the plot
                 yanchor = "top",  # Anchor the y-coordinate to the bottom of the plot
                 bordercolor = "black",  # Border color of the dropdown menu
@@ -106,7 +106,7 @@ def build(file):
     fig3.update_layout(
         title = f"Total Sales in {df['Year'].min()} - {df['Year'].max()} (grouped by year)",
         title_font=dict(size=20, family="Arial", color="black"),  # Title font
-        title_x = 0.4,
+        title_x = 0.3,
         xaxis_title="Month of the Year",
         yaxis_title="Total Sales",
         legend=dict(

@@ -17,7 +17,7 @@ title_alignment= """
     </style>
     """
 
-st.write("Upload your CSV files for analysis.")
+st.write("Upload EventSalesReport file.")
 
 uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
 
@@ -28,17 +28,18 @@ for uploaded_file in uploaded_files:
 
 
 # Check if at least one file is uploaded
-if len(files) >= 2:
+if len(files) >= 1:
     st.subheader("Data Analysis Options")
     # Show the 'Process' button
-    if st.button("Process historic data"):
-        file_found = False
-        # Call the build function from the graphs module with the first file
-        for name in names:
-            if re.search("^EventSalesReportDetailed",name):
 
-                g.build(files[name])
+    if st.button("Process Sum of Prices"):
+        file_found = False
+        for name in names:
+            if re.search("^EventSalesReportDetailed", name):
+
+                c.build(files[name])
                 file_found = True
+
         if not file_found:
                 st.write("you do not have the correct files uploaded")
 
@@ -53,18 +54,18 @@ if len(files) >= 2:
         if not file_found:
                 st.write("you do not have the correct files uploaded")
 
-    if st.button("Process Sum of Prices"):
+    if st.button("Process historic data"):
         file_found = False
+        # Call the build function from the graphs module with the first file
         for name in names:
-            if re.search("^EventSalesReportDetailed", name):
+            if re.search("^EventSalesReportDetailed",name):
 
-                c.build(files[name])
+                g.build(files[name])
                 file_found = True
-
         if not file_found:
                 st.write("you do not have the correct files uploaded")
 else:
-    st.warning("Please upload at least two CSV files")
+    st.warning("Please upload a file and ensure it is the right file")
 
 st.markdown(
     """

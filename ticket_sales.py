@@ -172,7 +172,7 @@ def build(file):
         labels1 = ['Counter', 'Phone', 'Web']
 
         # Create a dictionary mapping labels to their corresponding values, or 0 if the label doesn't exist
-        values_dict = {label: df_name.loc[df_name['Sales Channel'] == label, 'Count'].values[0]
+        values_dict = {label: df_name[df_name['Sales Channel'] == label]['Count'].sum()
                     if label in df_name['Sales Channel'].values else 0
                     for label in labels1}
 
@@ -190,7 +190,7 @@ def build(file):
     fig4.update_traces(hoverinfo='label+percent+value', textinfo='label+percent', marker=dict(colors=colors), insidetextorientation='horizontal')
 
     fig4.update_layout(
-        title = "Percentage S by Event",
+        title = "Percentage Sales by Event",
         title_font=dict(size=20, family="Arial", color="black"),  # Title font
         title_x = 0.4,
         updatemenus=[
@@ -214,9 +214,9 @@ def build(file):
 
     frames = len(df_current_unchanged['Event Name-Date'].unique())
     for i, name in enumerate(df_current_unchanged['Event Name-Date'].unique()[:]):
-        if i == 0: 
+        if i == 0:
             vis = True
-        else: 
+        else:
             vis = False
         df_name = df_current_unchanged[df_current_unchanged['Event Name-Date'] == name]
 
@@ -224,7 +224,7 @@ def build(file):
         labels2 = ['Price band A', 'Price band B', 'Price band C']
 
         # Create a dictionary mapping labels to their corresponding values, or 0 if the label doesn't exist
-        values_dict = {label: df_name.loc[df_name['Ticket Band'] == label, 'Count'].values[0]
+        values_dict = {label: df_name[df_name['Ticket Band'] == label]['Count'].sum()
                     if label in df_name['Ticket Band'].values else 0
                     for label in labels2}
 
