@@ -190,7 +190,7 @@ def build(file):
     fig4.update_traces(hoverinfo='label+percent+value', textinfo='label+percent', marker=dict(colors=colors), insidetextorientation='horizontal')
 
     fig4.update_layout(
-        title = "Percentage Sales by Event",
+        title = "Percentage Sales Channel",
         title_font=dict(size=20, family="Arial", color="black"),  # Title font
         title_x = 0.4,
         updatemenus=[
